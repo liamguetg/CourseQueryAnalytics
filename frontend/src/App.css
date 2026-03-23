@@ -1,0 +1,247 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+}
+
+.navbar {
+  background-color: #6200ea;
+  color: #fff;
+  padding: 2px 16px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 0 20px; 
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 300px;
+  height: auto; 
+  max-height: 300px; 
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card h2 {
+  color: #6200ea;
+  margin-top: 0;
+}
+
+
+.card input[type="text"],
+.card select,
+.card input[type="file"],
+.card button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.card button {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.card button:hover {
+  background-color: #3700b3;
+}
+
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+ul li button {
+  background-color: #ff3b30;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+ul li button:hover {
+  background-color: #c62828;
+}
+
+/* Updated Insight Container */
+.insight-container {
+  display: flex;
+  flex-direction: column;  /* Use column layout */
+  width: 87%;            /* Match width of the other cards */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 5.2%;       /* Add left margin to match the spacing */
+  /*margin-right: 200px;      !* Add right margin for symmetry *!*/
+  /*flex-wrap: wrap;*/
+  align-items: stretch;
+}
+
+.insight-container h2 {
+  color: #6200ea;
+  margin-top: 0;
+}
+
+.
+
+.insight-container .insight-graph {
+  width: 80%;            /* Match width of the other cards */
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid #ccc;  /* Optional, to separate graph visually */
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-left: 20%;       /* Add left margin to match the spacing */
+  margin-right: 200px;      /* Add right margin for symmetry */
+}
+
+footer {
+  padding-bottom: 20px;
+}
+
+
+.insight-dropdown-container {
+  position: absolute; /* Positioned relative to the parent container */
+  top: 1250px; /* Adjust the dropdown's vertical position */
+  left: 30%; /* Center horizontally */
+  transform: translateX(-50%); /* Ensure it's fully centered */
+  display: flex;
+  gap: 15px; /* Space between dropdowns */
+  z-index: 10; /* Ensure dropdowns appear above other elements */
+}
+
+.insight-dropdown {
+  width: 180px; /* Fixed width for dropdown menus */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff; /* White background for consistency */
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+
+.insight-dropdown:focus {
+  outline: none;
+  border-color: #6200ea; /* Highlight border on focus */
+  box-shadow: 0 0 5px rgba(98, 0, 234, 0.5); /* Optional visual focus */
+}
+
+.insight-dropdown-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6200ea;
+  display: flex;
+  margin-bottom: 5px;
+  /*margin-right: 10px;*/
+  /*align-items: flex-start;*/
+  text-align: center; /* Center the label text */
+}
+
+.average-over-time-container {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-container {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dropdown-container-course-avg {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.dropdown-container-course-avg > div {
+  display: flex;
+  flex-direction: column; /* Ensures label is on top of the select */
+  gap: 5px; /* Adds space between label and dropdown */
+}
+
+.professor-search {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.professor-dropdown {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: #f9f9f9;
+}
+
+.graph-container {
+  margin-top: 20px;
+}
+
+.bar-graph {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  /*width: 80%;*/
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  padding: 5px;
+}

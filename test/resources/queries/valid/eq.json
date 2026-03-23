@@ -1,0 +1,27 @@
+{
+    "title": "SELECT dept, avg WHERE dept equals 'phys' AND avg equals 81",
+    "input": {
+        "WHERE": {
+            "AND": [
+                {
+                    "IS": {
+                        "sections_dept": "phys"
+                    }
+                },
+                {
+                    "EQ": {
+                        "sections_avg": 81
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "sections_dept",
+                "sections_avg"
+            ]
+        }
+    },
+    "errorExpected": false,
+    "expected": [{"sections_dept":"phys","sections_avg":81},{"sections_dept":"phys","sections_avg":81},{"sections_dept":"phys","sections_avg":81},{"sections_dept":"phys","sections_avg":81}]
+}

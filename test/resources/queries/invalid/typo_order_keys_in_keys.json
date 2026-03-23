@@ -1,0 +1,7 @@
+{
+    "title": "Order keys itself typo Unexpected response status 400: All ORDER keys must be in COLUMNS",
+    "input": {"WHERE":{"LT":{"sections_pass":4}},"OPTIONS":{"COLUMNS":["sections_avg","sections_dept","sections_id","maxFail"],"ORDER":{"dir":"DOWN","keys":["sectons_avg","sections_dept","sections_id"]}},"TRANSFORMATIONS":{"GROUP":["sections_avg","sections_dept","sections_id"],"APPLY":[{"maxFail":{"MAX":"sections_fail"}}]}},
+    "errorExpected": true,
+    "expected": "InsightError"
+    
+}

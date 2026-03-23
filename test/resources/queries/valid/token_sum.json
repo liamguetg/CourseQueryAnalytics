@@ -1,0 +1,8 @@
+{
+	"title": "Token Tests",
+	"input": {"WHERE":{"LT":{"sections_avg":75}},"OPTIONS":{"COLUMNS":["sections_year","totalAudit"]},"TRANSFORMATIONS":{"GROUP":["sections_year"],"APPLY":[{"totalAudit":{"SUM":"sections_audit"}}]}},
+	"errorExpected": false,
+	"expected": [
+		{"sections_year":1900,"totalAudit":1896},{"sections_year":2007,"totalAudit":118},{"sections_year":2008,"totalAudit":153},{"sections_year":2009,"totalAudit":162},{"sections_year":2010,"totalAudit":190},{"sections_year":2011,"totalAudit":196},{"sections_year":2012,"totalAudit":210},{"sections_year":2013,"totalAudit":204},{"sections_year":2014,"totalAudit":183},{"sections_year":2015,"totalAudit":166},{"sections_year":2016,"totalAudit":19}
+	]
+}

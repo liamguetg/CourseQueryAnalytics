@@ -1,0 +1,29 @@
+{
+    "title": "Invalid column format in COLUMNS",
+    "input": {
+        "WHERE": {
+            "AND": [
+                {
+                    "NOT": {
+                        "IS": {
+                            "sections_dept": "phys*"
+                        }
+                    }
+                },
+                {
+                    "GT": {
+                        "sections_avg": 98
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "invalidColumnFormat", 
+                "sections_avg"
+            ]
+        }
+    },
+    "errorExpected": true,
+    "expected": "InsightError"
+}

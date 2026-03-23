@@ -1,0 +1,18 @@
+{
+    "title": "Invalid MComparator in WHERE clause",
+    "input": {
+        "WHERE": {
+            "GT": { 
+                "invalid_key": 98
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "sections_dept",
+                "sections_avg"
+            ]
+        }
+    },
+    "errorExpected": true,
+    "expected": "InsightError"
+}

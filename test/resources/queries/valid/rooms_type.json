@@ -1,0 +1,8 @@
+{
+	"title": "Rooms Type",
+	"input": {"WHERE":{},"OPTIONS":{"COLUMNS":["rooms_type","totalSeats"],"ORDER":{"dir":"DOWN","keys":["totalSeats"]}},"TRANSFORMATIONS":{"GROUP":["rooms_type"],"APPLY":[{"totalSeats":{"SUM":"rooms_seats"}}]}},
+	"errorExpected": false,
+	"expected": [
+		{"rooms_type":"Tiered Large Group","totalSeats":12306},{"rooms_type":"Open Design General Purpose","totalSeats":4475},{"rooms_type":"Small Group","totalSeats":3752},{"rooms_type":"Case Style","totalSeats":1525},{"rooms_type":"TBD","totalSeats":929},{"rooms_type":"Active Learning","totalSeats":272},{"rooms_type":"Studio Lab","totalSeats":150},{"rooms_type":"","totalSeats":60}
+	]
+}

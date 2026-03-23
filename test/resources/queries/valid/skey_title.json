@@ -1,0 +1,33 @@
+{
+    "title": "Invalid Type in IS Filter",
+    "input": {
+      "WHERE": {
+        "AND": [
+          {
+            "GT": {
+              "sections_avg": 74
+            }
+          },
+          {
+            "IS": {
+              "sections_title": "artif intell 2"
+            }
+          }
+        ]
+      },
+      "OPTIONS": {
+        "COLUMNS": [
+          "sections_dept",
+          "sections_id",
+          "sections_avg",
+          "sections_pass"
+        ],
+        "ORDER": "sections_avg"
+      }
+    },
+    "errorExpected": false,
+    "expected": [
+        {"sections_dept":"cpsc","sections_id":"522","sections_avg":82.55,"sections_pass":11},{"sections_dept":"cpsc","sections_id":"522","sections_avg":82.55,"sections_pass":11},{"sections_dept":"cpsc","sections_id":"522","sections_avg":83.39,"sections_pass":18},{"sections_dept":"cpsc","sections_id":"522","sections_avg":83.39,"sections_pass":18},{"sections_dept":"cpsc","sections_id":"522","sections_avg":84,"sections_pass":15},{"sections_dept":"cpsc","sections_id":"522","sections_avg":84,"sections_pass":15},{"sections_dept":"cpsc","sections_id":"522","sections_avg":90.71,"sections_pass":7},{"sections_dept":"cpsc","sections_id":"522","sections_avg":90.71,"sections_pass":7}
+    ]
+  }
+  

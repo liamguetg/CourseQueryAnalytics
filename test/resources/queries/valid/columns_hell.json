@@ -1,0 +1,43 @@
+{
+    "title": "Valid Query with AND filter and Multiple Columns",
+    "input": {
+        "WHERE": {
+            "AND": [
+                {
+                    "GT": {
+                        "sections_audit": 1
+                    }
+                },
+                {
+                    "IS": {
+                        "sections_dept": "cpsc"
+                    }
+                },
+                {
+                    "LT": {
+                        "sections_avg": 90
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "sections_dept",
+                "sections_id",
+                "sections_instructor",
+                "sections_title",
+                "sections_uuid",
+                "sections_avg",
+                "sections_pass",
+                "sections_fail",
+                "sections_audit"
+            ],
+            "ORDER": "sections_avg"
+        }
+    },
+    "errorExpected": false,
+    "expected": [
+        {"sections_dept":"cpsc","sections_id":"320","sections_instructor":"manuch, jan","sections_title":"intr alg dsgn&an","sections_uuid":"62405","sections_avg":68.33,"sections_pass":85,"sections_fail":15,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"320","sections_instructor":"","sections_title":"intr alg dsgn&an","sections_uuid":"62406","sections_avg":71.09,"sections_pass":351,"sections_fail":37,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"210","sections_instructor":"","sections_title":"sftwr constructn","sections_uuid":"61100","sections_avg":71.46,"sections_pass":323,"sections_fail":24,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"221","sections_instructor":"","sections_title":"basic alg&data","sections_uuid":"83415","sections_avg":71.61,"sections_pass":203,"sections_fail":16,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"110","sections_instructor":"","sections_title":"comptn, progrmng","sections_uuid":"83395","sections_avg":72.63,"sections_pass":736,"sections_fail":118,"sections_audit":3},{"sections_dept":"cpsc","sections_id":"304","sections_instructor":"ng, raymond tak-yan","sections_title":"intr rel databse","sections_uuid":"62382","sections_avg":72.9,"sections_pass":155,"sections_fail":4,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"340","sections_instructor":"","sections_title":"machine lrn mine","sections_uuid":"1319","sections_avg":72.94,"sections_pass":101,"sections_fail":7,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"221","sections_instructor":"","sections_title":"basic alg&data","sections_uuid":"72346","sections_avg":73.2,"sections_pass":165,"sections_fail":13,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"221","sections_instructor":"","sections_title":"basic alg&data","sections_uuid":"62371","sections_avg":73.63,"sections_pass":497,"sections_fail":56,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"110","sections_instructor":"","sections_title":"comptn, progrmng","sections_uuid":"67301","sections_avg":75.81,"sections_pass":145,"sections_fail":16,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"304","sections_instructor":"","sections_title":"intr rel databse","sections_uuid":"39883","sections_avg":76,"sections_pass":55,"sections_fail":1,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"304","sections_instructor":"","sections_title":"intr rel databse","sections_uuid":"62384","sections_avg":76.2,"sections_pass":310,"sections_fail":5,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"110","sections_instructor":"","sections_title":"comptn, progrmng","sections_uuid":"43189","sections_avg":77.43,"sections_pass":95,"sections_fail":7,"sections_audit":5},{"sections_dept":"cpsc","sections_id":"110","sections_instructor":"kiczales, gregor","sections_title":"comptn, progrmng","sections_uuid":"43188","sections_avg":77.43,"sections_pass":95,"sections_fail":7,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"340","sections_instructor":"","sections_title":"machine lrn mine","sections_uuid":"49917","sections_avg":77.93,"sections_pass":86,"sections_fail":2,"sections_audit":6},{"sections_dept":"cpsc","sections_id":"340","sections_instructor":"ng, raymond tak-yan","sections_title":"machine lrn mine","sections_uuid":"49916","sections_avg":77.93,"sections_pass":86,"sections_fail":2,"sections_audit":3},{"sections_dept":"cpsc","sections_id":"310","sections_instructor":"","sections_title":"intr sftwr eng","sections_uuid":"67313","sections_avg":79.12,"sections_pass":75,"sections_fail":1,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"445","sections_instructor":"","sections_title":"alg in bioin","sections_uuid":"46752","sections_avg":79.78,"sections_pass":26,"sections_fail":1,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"445","sections_instructor":"meyer, irmtraud margret","sections_title":"alg in bioin","sections_uuid":"46751","sections_avg":79.78,"sections_pass":26,"sections_fail":1,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"344","sections_instructor":"","sections_title":"hum-com interact","sections_uuid":"90566","sections_avg":80.11,"sections_pass":45,"sections_fail":0,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"340","sections_instructor":"","sections_title":"machine lrn mine","sections_uuid":"62411","sections_avg":80.29,"sections_pass":146,"sections_fail":1,"sections_audit":14},{"sections_dept":"cpsc","sections_id":"340","sections_instructor":"schmidt, mark","sections_title":"machine lrn mine","sections_uuid":"62410","sections_avg":80.29,"sections_pass":146,"sections_fail":1,"sections_audit":11},{"sections_dept":"cpsc","sections_id":"540","sections_instructor":"","sections_title":"machine learn i","sections_uuid":"52111","sections_avg":81.12,"sections_pass":26,"sections_fail":0,"sections_audit":3},{"sections_dept":"cpsc","sections_id":"540","sections_instructor":"","sections_title":"machine learn i","sections_uuid":"52110","sections_avg":81.12,"sections_pass":26,"sections_fail":0,"sections_audit":3},{"sections_dept":"cpsc","sections_id":"340","sections_instructor":"","sections_title":"machine lrn mine","sections_uuid":"3398","sections_avg":82.66,"sections_pass":171,"sections_fail":3,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"540","sections_instructor":"","sections_title":"machine learn i","sections_uuid":"90645","sections_avg":83,"sections_pass":14,"sections_fail":0,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"540","sections_instructor":"doucet, arnaud","sections_title":"machine learn i","sections_uuid":"90644","sections_avg":83,"sections_pass":14,"sections_fail":0,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"445","sections_instructor":"","sections_title":"alg in bioin","sections_uuid":"62440","sections_avg":83.59,"sections_pass":32,"sections_fail":0,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"445","sections_instructor":"hoos, holger","sections_title":"alg in bioin","sections_uuid":"62439","sections_avg":83.59,"sections_pass":32,"sections_fail":0,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"540","sections_instructor":"","sections_title":"machine learn i","sections_uuid":"61236","sections_avg":87.61,"sections_pass":31,"sections_fail":0,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"540","sections_instructor":"de freitas, joao","sections_title":"machine learn i","sections_uuid":"61235","sections_avg":87.61,"sections_pass":31,"sections_fail":0,"sections_audit":2},{"sections_dept":"cpsc","sections_id":"547","sections_instructor":"","sections_title":"info visualizatn","sections_uuid":"1381","sections_avg":88.47,"sections_pass":17,"sections_fail":0,"sections_audit":3},{"sections_dept":"cpsc","sections_id":"547","sections_instructor":"munzner, tamara","sections_title":"info visualizatn","sections_uuid":"1380","sections_avg":88.47,"sections_pass":17,"sections_fail":0,"sections_audit":3}
+        
+    ]
+}
