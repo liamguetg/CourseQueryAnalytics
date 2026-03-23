@@ -50,6 +50,12 @@ The backend provides dataset lifecycle management and query execution, while the
 - API contracts (status codes + response shapes) are tested using Supertest
 - Code quality is enforced with linting and formatting checks (`eslint`, `prettier`)
 
+
+
+<img width="1438" height="406" alt="Screenshot 2026-03-23 at 1 18 59 AM" src="https://github.com/user-attachments/assets/40b0fcd6-fe5c-4c4f-bee1-8606083c095e" /><img width="1300" height="683" alt="Screenshot 2026-03-23 at 1 20 21 AM" src="https://github.com/user-attachments/assets/3ac3dcb4-2610-4c27-9cd4-f3d5fb6aeb50" />
+
+
+
 ## Configuring your environment
 
 To start using this project, you need to get your development environment configured so that you can build and execute the code.
