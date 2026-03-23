@@ -53,7 +53,8 @@ The backend provides dataset lifecycle management and query execution, while the
 
 
 <img width="1438" height="406" alt="Screenshot 2026-03-23 at 1 18 59 AM" src="https://github.com/user-attachments/assets/40b0fcd6-fe5c-4c4f-bee1-8606083c095e" /><img width="1300" height="683" alt="Screenshot 2026-03-23 at 1 20 21 AM" src="https://github.com/user-attachments/assets/3ac3dcb4-2610-4c27-9cd4-f3d5fb6aeb50" />
-
+<img width="1288" height="693" alt="Screenshot 2026-03-23 at 1 20 33 AM" src="https://github.com/user-attachments/assets/70808a74-2507-4ae6-9d7c-b724db97d2b6" />
+<img width="1285" height="775" alt="Screenshot 2026-03-23 at 1 20 53 AM" src="https://github.com/user-attachments/assets/1966971a-9817-4a0a-bc31-6904a3a465cc" />
 
 
 ## Configuring your environment
