@@ -103,6 +103,46 @@ In the project folder:
 
 If you are curious, some of these commands are shortcuts defined in [package.json -> scripts](./package.json).
 
+## Hosting on AWS EC2
+
+This project is deployed on an AWS EC2 instance (Amazon Linux) with the backend managed by PM2 and the frontend served by Nginx.
+
+### Tools used
+
+- **AWS EC2 (Amazon Linux):** cloud VM hosting environment
+- **Node.js 18 + Yarn:** runtime and dependency management
+- **PM2:** keeps the backend process alive across crashes/reboots
+- **Nginx:** serves static frontend assets on port 80 and proxies API calls to backend port 4321
+- **Git/GitHub:** source deployment workflow (`git clone` / `git pull`)
+
+### Deployment flow (what was done)
+
+1. Launch EC2 instance and configure security group rules:
+    - allow SSH on port `22`
+    - allow HTTP on port `80`
+    - allow backend traffic on port `4321` (for direct API testing)
+2. Install system dependencies and project runtime (`git`, Node 18, Yarn).
+3. Clone the repository (including branch-specific deployment when needed), then install dependencies:
+    - root: `yarn install`
+    - frontend: `cd frontend && yarn install`
+4. Build frontend static assets:
+    - `cd frontend && yarn build`
+5. Start backend with PM2 from the compiled output:
+    - `npx tsc`
+    - `pm2 start dist/App.js --name coursequery`
+6. Configure Nginx to:
+    - serve `frontend/build` on port `80`
+    - proxy `/echo`, `/datasets`, and `/query` to `http://127.0.0.1:4321`
+7. Reload Nginx and verify:
+    - app loads at `http://<ec2-public-ip-or-dns>`
+    - backend responds at `http://<ec2-public-ip-or-dns>:4321/echo/hello`
+
+### Important deployment notes
+
+- Opening the EC2 public URL without a port targets port `80`, so Nginx is required for browser access to the frontend.
+- Direct backend checks must use `http://` (not `https://`) on port `4321` unless TLS termination is configured.
+- The local `data/` cache folder is not included by default in a fresh clone; datasets must be uploaded again (or transferred) on the EC2 instance.
+
 ## Running and testing from an IDE
 
 IntelliJ Ultimate should be automatically configured the first time you open the project (IntelliJ Ultimate is a free download through the [JetBrains student program](https://www.jetbrains.com/community/education/#students/)).
