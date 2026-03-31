@@ -29,6 +29,7 @@ function BarChart({
 
     const chartOptions = {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
             // x: {
             //     type: 'linear',  // Make sure it's using linear scale
@@ -71,30 +72,9 @@ function BarChart({
         }
     };
 
-    // const options = {
-    //     responsive: true,
-    //     plugins: {
-    //         title: {
-    //             display: true,   // Show the title
-    //             text: title,  // Title text
-    //             font: {
-    //                 size: 20,    // Adjust the font size as needed
-    //                 weight: "bold",
-    //             },
-    //         },
-    //     },
-    //     scales: {
-    //         y: {
-    //             beginAtZero: true,
-    //             min: 0,
-    //             max: 100, // Adjust max if needed
-    //         },
-    //     },
-    // };
-
     return (
-        <div className="insight-container">
-            <div className="insight-graph">
+        <div className="chart-block">
+            <div className="chart-canvas-wrap">
                 <Bar data={chartData} options={chartOptions}/>
             </div>
         </div>

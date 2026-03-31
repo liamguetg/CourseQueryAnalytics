@@ -3,38 +3,18 @@ import * as path from "path";
 import { getDataDir, getDiskMetadataPath } from "./validateDatasetHelpers";
 import { Section } from "./Section";
 import { InsightDataset, InsightDatasetKind, InsightError } from "./IInsightFacade";
-import { Room } from "./Room";
 
 // Function to get the path to the dataset file
 function getDatasetFilePath(id: string): string {
 	return path.join(getDataDir(), `${id}.json`); // Assuming datasets are stored as JSON files named after their IDs
 }
 
-// Saves the dataset to Disk
-export async function saveSectionsDataToDisk(id: string, sections: Section[]): Promise<void> {
-	const datasetFilePath = getDatasetFilePath(id);
-	await fs.writeJSON(datasetFilePath, sections);
-}
-
-// Saves the dataset to Disk
-export async function saveRoomsToDisk(id: string, rooms: Room[]): Promise<void> {
-	const datasetFilePath = getDatasetFilePath(id);
-	await fs.writeJSON(datasetFilePath, rooms);
-}
-
-// Saves the metadata map to Disk (entirely replaces the previous metadata)
-export async function saveMetadataToDisk(metadata: Map<string, InsightDataset>): Promise<void> {
-	const metadataPath = getDiskMetadataPath();
-	const metadataArray = Array.from(metadata.values());
-	await fs.writeFile(metadataPath, JSON.stringify(metadataArray, null), "utf8");
-}
-
 // verifies that the dataset has been added (either in memory or on disk) and loads it into memory if needed
 export async function verifyAndLoadDataset(
 	id: string,
 	metadata: Map<string, InsightDataset>,
-	sectionsDataset: Map<string, Section[]>,
-	roomsDataset: Map<string, Room[]>
+	sectionsDataset: Map<string, Section[]>
+	// roomsDataset: Map<string, Room[]>
 ): Promise<void> {
 	if (!metadata.has(id)) {
 		throw new InsightError(`Dataset with id '${id}' does not exist.`);
@@ -46,13 +26,14 @@ export async function verifyAndLoadDataset(
 			} else if (sectionsDataset.has(id)) {
 				return;
 			}
-		} else if (metadata.get(id)?.kind === InsightDatasetKind.Rooms) {
-			if (!roomsDataset.has(id)) {
-				await loadRoomsDatasetFromDisk(id, roomsDataset);
-			} else if (roomsDataset.has(id)) {
-				return;
-			}
 		}
+		// else if (metadata.get(id)?.kind === InsightDatasetKind.Rooms) {
+		// 	if (!roomsDataset.has(id)) {
+		// 		await loadRoomsDatasetFromDisk(id, roomsDataset);
+		// 	} else if (roomsDataset.has(id)) {
+		// 		return;
+		// 	}
+		// }
 	}
 }
 
@@ -69,39 +50,9 @@ export async function loadSectionDatasetFromDisk(id: string, datasets: Map<strin
 
 		// Load the dataset into memory by updating the datasets map
 		datasets.set(id, sections);
-		console.log(`Sections Dataset with ID '${id}' successfully loaded into memory.`);
 	} catch (error: any) {
 		throw new InsightError(`Failed to load dataset '${id}' from disk: ${error.message}`);
 	}
-}
-
-// Function to load a dataset by ID into memory
-export async function loadRoomsDatasetFromDisk(id: string, datasets: Map<string, Room[]>): Promise<void> {
-	try {
-		const datasetFilePath = getDatasetFilePath(id);
-
-		// Read the dataset file content
-		const fileContent = await fs.readFile(datasetFilePath, "utf8");
-
-		// Parse the JSON content into an array of sections
-		const rooms: Room[] = JSON.parse(fileContent);
-
-		// Load the dataset into memory by updating the datasets map
-		datasets.set(id, rooms);
-		console.log(`Rooms dataset with ID '${id}' successfully loaded into memory.`);
-	} catch (error: any) {
-		throw new InsightError(`Failed to load dataset '${id}' from disk: ${error.message}`);
-	}
-}
-
-// Makes and returns a new InsightDataset ("metadata")
-export function makeNewMetaData(id: string, kind: InsightDatasetKind, processedData: any[]): InsightDataset {
-	const newMetadata: InsightDataset = {
-		id: id,
-		kind: kind,
-		numRows: processedData.length,
-	};
-	return newMetadata;
 }
 
 // Loads the metadata.json from disk into the metadata map in memory

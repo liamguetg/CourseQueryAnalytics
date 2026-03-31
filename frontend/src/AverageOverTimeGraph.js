@@ -4,14 +4,24 @@ import {
     searchProfessors,
     fetchAvgPerYear
 } from "./InsightQueries";
-import {Bar} from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from "chart.js";
 
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const AverageOverTimeGraph = ({ datasetId }) => {
     const [professors, setProfessors] = useState([]); // List of professors
     const [filteredProfessors, setFilteredProfessors] = useState([]); // Filtered dropdown options
-    const [selectedProfessor, setSelectedProfessor] = useState(); // Selected professor
-    const [searchText, setSearchText] = useState(); // User-typed text
+    const [selectedProfessor, setSelectedProfessor] = useState("");
+    const [searchText, setSearchText] = useState("");
     const [graphData, setGraphData] = useState({
         labels: [], // e.g., years as labels
         datasets: [
@@ -83,7 +93,7 @@ const AverageOverTimeGraph = ({ datasetId }) => {
 
     const chartOptions = {
         responsive: true,
-
+        maintainAspectRatio: false,
         scales: {
             x: {
                 type: 'linear',  // Make sure it's using linear scale
@@ -127,31 +137,30 @@ const AverageOverTimeGraph = ({ datasetId }) => {
 
 
     return (
-        <div className="insight-container">
-            {/*<h2>Average Over Time for a Professor</h2>*/}
-            <div className="insight-graph">
-                <div className="dropdown-container">
-                    <input
-                        type="text"
-                        placeholder="Search or select a professor..."
-                        value={searchText}
-                        onChange={(e) => setSearchText(e.target.value)}
-                        className="professor-search"
-                    />
-                    <select
-                        size={5} // Makes it appear like a dropdown list
-                        value={selectedProfessor}
-                        onChange={(e) => setSelectedProfessor(e.target.value)}
-                        className="professor-dropdown"
-                    >
-                        {filteredProfessors.map((prof) => (
-                            <option key={prof} value={prof}>
-                                {prof}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+        <div className="chart-block">
+            <div className="dropdown-container">
+                <input
+                    type="text"
+                    placeholder="Search or select a professor..."
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    className="professor-search"
+                />
+                <select
+                    size={5}
+                    value={selectedProfessor}
+                    onChange={(e) => setSelectedProfessor(e.target.value)}
+                    className="professor-dropdown"
+                >
+                    {filteredProfessors.map((prof) => (
+                        <option key={prof} value={prof}>
+                            {prof}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
+            <div className="chart-canvas-wrap">
                 {graphData.datasets && graphData.datasets.length > 0 ? (
                     <Bar data={graphData} options={chartOptions} />
                 ) : (

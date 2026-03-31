@@ -81,7 +81,7 @@ export function handleIsFilter(isFilter: any, dataset: any[]): any[] {
 	if (middleWildcard.test(value)) {
 		throw new InsightError("Invalid wildcard pattern: Wildcards are only allowed at the start or end of the string.");
 	}
-	
+
 	const regex = new RegExp(`^${value.replace(/\*/g, ".*")}$`);
 	return dataset.filter((item) => regex.test((item as any)[field]));
 }

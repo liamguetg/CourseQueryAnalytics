@@ -1,8 +1,7 @@
 import axios from "axios";
+import { API_BASE } from "./config";
 
-const BASE_URL = "http://localhost:4321/query";
-
-
+const BASE_URL = API_BASE + "/query";
 
 export const fetchDepartments = async (datasetId) => {
     const query = {

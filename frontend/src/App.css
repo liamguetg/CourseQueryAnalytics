@@ -52,6 +52,20 @@ body, html {
   margin-top: 0;
 }
 
+.dataset-cards-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.demo-footer-note {
+  color: #000;
+  font-size: 0.95rem;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  margin: 8px 20px 0;
+}
 
 .card input[type="text"],
 .card select,
@@ -103,20 +117,19 @@ ul li button:hover {
   background-color: #c62828;
 }
 
-/* Updated Insight Container */
+/* Main insights panel (single outer box in App.js) */
 .insight-container {
   display: flex;
-  flex-direction: column;  /* Use column layout */
-  width: 87%;            /* Match width of the other cards */
+  flex-direction: column;
+  align-items: stretch;
+  width: calc(100% - 40px);
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 20px;
+  box-sizing: border-box;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  margin-top: 20px;
-  margin-left: 5.2%;       /* Add left margin to match the spacing */
-  /*margin-right: 200px;      !* Add right margin for symmetry *!*/
-  /*flex-wrap: wrap;*/
-  align-items: stretch;
 }
 
 .insight-container h2 {
@@ -124,17 +137,27 @@ ul li button:hover {
   margin-top: 0;
 }
 
-.
+/* One chart + controls section (used inside BarChart / CourseAvgGraph / AverageOverTimeGraph) */
+.chart-block {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
-.insight-container .insight-graph {
-  width: 80%;            /* Match width of the other cards */
-  display: flex;
-  align-items: stretch;
-  border-top: 1px solid #ccc;  /* Optional, to separate graph visually */
-  padding-top: 20px;
-  margin-top: 20px;
-  margin-left: 20%;       /* Add left margin to match the spacing */
-  margin-right: 200px;      /* Add right margin for symmetry */
+.chart-block + .chart-block {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Chart.js needs a sized parent when maintainAspectRatio is false */
+.chart-canvas-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 380px;
+  margin-top: 12px;
+  box-sizing: border-box;
 }
 
 footer {
@@ -194,13 +217,18 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .dropdown-container-course-avg {
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 10px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .dropdown-container-course-avg > div {

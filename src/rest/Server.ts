@@ -1,10 +1,8 @@
 import express, { Application, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import Log from "@ubccpsc310/folder-test/build/Log";
 import * as http from "http";
 import cors from "cors";
 import InsightFacade from "../controller/InsightFacade";
-import { InsightDatasetKind, InsightError, NotFoundError } from "../controller/IInsightFacade";
 
 export default class Server {
 	private readonly port: number;
@@ -13,7 +11,7 @@ export default class Server {
 	private insightFacade: InsightFacade;
 
 	constructor(port: number) {
-		Log.info(`Server::<init>( ${port} )`);
+		console.info(`Server::<init>( ${port} )`);
 		this.port = port;
 		this.express = express();
 		this.insightFacade = new InsightFacade();
@@ -36,19 +34,19 @@ export default class Server {
 	 */
 	public async start(): Promise<void> {
 		return new Promise((resolve, reject) => {
-			Log.info("Server::start() - start");
+			console.info("Server::start() - start");
 			if (this.server !== undefined) {
-				Log.error("Server::start() - server already listening");
+				console.error("Server::start() - server already listening");
 				reject();
 			} else {
 				this.server = this.express
 					.listen(this.port, () => {
-						Log.info(`Server::start() - server listening on port: ${this.port}`);
+						console.info(`Server::start() - server listening on port: ${this.port}`);
 						resolve();
 					})
 					.on("error", (err: Error) => {
 						// catches errors in server start
-						Log.error(`Server::start() - server ERROR: ${err.message}`);
+						console.error(`Server::start() - server ERROR: ${err.message}`);
 						reject(err);
 					});
 			}
@@ -62,14 +60,14 @@ export default class Server {
 	 * @returns {Promise<void>}
 	 */
 	public async stop(): Promise<void> {
-		Log.info("Server::stop()");
+		console.info("Server::stop()");
 		return new Promise((resolve, reject) => {
 			if (this.server === undefined) {
-				Log.error("Server::stop() - ERROR: server not started");
+				console.error("Server::stop() - ERROR: server not started");
 				reject();
 			} else {
 				this.server.close(() => {
-					Log.info("Server::stop() - server closed");
+					console.info("Server::stop() - server closed");
 					resolve();
 				});
 			}
@@ -94,43 +92,9 @@ export default class Server {
 
 		// TODO: your other endpoints should go here
 
-		this.express.put("/dataset/:id/:kind", this.uploadDataset.bind(this));
-		this.express.delete("/dataset/:id", this.deleteDataset.bind(this));
 		this.express.get("/datasets", this.getDatasets.bind(this));
 
 		this.express.post("/query", this.query.bind(this));
-	}
-
-	private async uploadDataset(req: Request, res: Response): Promise<void> {
-		const { id, kind } = req.params;
-		const content = req.body.toString("base64");
-
-		try {
-			const result = await this.insightFacade.addDataset(id, content, kind as InsightDatasetKind);
-			res.status(StatusCodes.OK).json({ result });
-		} catch (err) {
-			const statCode = err instanceof InsightError ? StatusCodes.BAD_REQUEST : StatusCodes.INTERNAL_SERVER_ERROR;
-			const errorMessage = err instanceof Error ? err.message : "Unknown error";
-			res.status(statCode).json({ error: errorMessage });
-		}
-	}
-
-	private async deleteDataset(req: Request, res: Response): Promise<void> {
-		const { id } = req.params;
-
-		try {
-			const result = await this.insightFacade.removeDataset(id);
-			res.status(StatusCodes.OK).json({ result });
-		} catch (err) {
-			// Handle specific error types for correct response codes
-			if (err instanceof NotFoundError) {
-				res.status(StatusCodes.NOT_FOUND).json({ error: err.message });
-			} else if (err instanceof InsightError) {
-				res.status(StatusCodes.BAD_REQUEST).json({ error: err.message });
-			} else {
-				res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: "Unexpected error" });
-			}
-		}
 	}
 
 	private async getDatasets(req: Request, res: Response): Promise<void> {
@@ -151,6 +115,7 @@ export default class Server {
 			// Validate the query
 			if (!query || typeof query !== "object") {
 				res.status(StatusCodes.BAD_REQUEST).json({ error: "Invalid query format" });
+				return;
 			}
 
 			// Perform the query using the InsightFacade
@@ -169,7 +134,7 @@ export default class Server {
 	// By updating the Server.echo function pointer above, these methods can be easily moved.
 	private static echo(req: Request, res: Response): void {
 		try {
-			Log.info(`Server::echo(..) - params: ${JSON.stringify(req.params)}`);
+			console.info(`Server::echo(..) - params: ${JSON.stringify(req.params)}`);
 			const response = Server.performEcho(req.params.msg);
 			res.status(StatusCodes.OK).json({ result: response });
 		} catch (err) {

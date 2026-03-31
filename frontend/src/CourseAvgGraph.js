@@ -104,7 +104,7 @@ const CourseAvgGraph = ({ datasetId }) => {
 
     const chartOptions = {
         responsive: true,
-
+        maintainAspectRatio: false,
         scales: {
             x: {
                 type: 'linear',  // Make sure it's using linear scale
@@ -149,8 +149,7 @@ const CourseAvgGraph = ({ datasetId }) => {
 
 
     return (
-        <div className="insight-container">
-        <div className="insight-graph">
+        <div className="chart-block">
             {/* Dropdown container */}
             <div className="dropdown-container-course-avg">
                 {/* Department dropdown */}
@@ -200,10 +199,10 @@ const CourseAvgGraph = ({ datasetId }) => {
                 </div>
             </div>
 
-            {/* Graph rendered below the dropdowns */}
-            <Bar data={courseAvgData} options={chartOptions}/>
+            <div className="chart-canvas-wrap">
+                <Bar data={courseAvgData} options={chartOptions}/>
+            </div>
         </div>
-    </div>
     );
 
 };

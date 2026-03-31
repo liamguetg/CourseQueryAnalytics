@@ -7,7 +7,7 @@ module.exports = {
 		es6: true,
 		node: true,
 	},
-	noInlineConfig: true, // disallows students from using /* eslint-disable */ comments
+	noInlineConfig: false, 
 	parser: "@typescript-eslint/parser",
 	parserOptions: {
 		project: path.join(__dirname, "tsconfig.json"),
